@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<title>旁白 · 热红薯糖水｜今晚只做一锅</title>
+<meta name="theme-color" content="#0b0b0f">
+<style>
+/* ===== 品牌配色 & 基础 ===== */
+:root{
+  --bg:#0b0b10;           /* 夜色底 */
+  --card:#0f1117;         /* 卡片底 */
+  --ink:#e5e7eb;          /* 主文字 */
+  --muted:#a7b0bf;        /* 次级文字 */
+  --brand:#ffd84d;        /* 柠檬黄 */
+  --line:#1f2430;         /* 细分隔线 */
+  --accent:#58d5ff;       /* 轻点缀 */
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family: -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Inter,Arial,sans-serif;
+  color:var(--ink); background:
+    radial-gradient(1200px 800px at 10% -10%, #1a1b22 0%, transparent 60%),
+    radial-gradient(900px 700px at 90% 10%, #12131a 0%, transparent 60%),
+    linear-gradient(#0b0b10,#0b0b10);
+  letter-spacing:.2px;
+}
+
+/* ===== 容器 ===== */
+.container{max-width:980px;margin:0 auto;padding:18px 18px 90px}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{
+  width:44px;height:44px;position:relative;filter:drop-shadow(0 0 14px rgba(255,216,77,.25));
+}
+.logo:before{ /* 黄点 */
+  content:"";position:absolute;right:0;top:0;width:16px;height:16px;border-radius:50%;background:var(--brand);
+}
+.logo:after{ /* 碗沿 */
+  content:"";position:absolute;left:0;bottom:3px;width:44px;height:9px;border-radius:40px;background:#111214;
+}
+h1{margin:0;font-size:24px;line-height:1.06;font-weight:900;letter-spacing:.6px}
+.sub{margin:3px 0 0;color:var(--muted);font-size:13px}
+
+.badges{display:flex;gap:8px;flex-wrap:wrap}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;
+  background:rgba(255,216,77,.14); color:#ffe27a; font-weight:800; font-size:12px; border:1px solid rgba(255,216,77,.25);
+}
+.pill .dot{width:6px;height:6px;border-radius:50%;background:var(--brand)}
+
+/* ===== 英雄区大字 ===== */
+.hero{
+  margin:12px 0 18px; padding:22px; border-radius:16px;
+  background:linear-gradient(180deg, rgba(255,216,77,.12), rgba(255,216,77,0) 50%), 
+             linear-gradient(180deg, rgba(88,213,255,.08), rgba(88,213,255,0) 60%),
+             rgba(16,18,24,.6);
+  border:1px solid rgba(255,255,255,.06);
+  backdrop-filter:saturate(130%) blur(6px);
+}
+.hero h2{ margin:0 0 6px; font-size:28px; line-height:1.1; font-weight:900 }
+.hero p{ margin:0; color:var(--muted); font-size:13.5px }
+
+/* ===== 菜单区 ===== */
+.section-title{margin:20px 0 10px;display:flex;align-items:center;gap:10px}
+.section-title .bar{width:30px;height:3px;border-radius:3px;background:var(--brand)}
+.section-title h3{margin:0;font-size:15px;letter-spacing:.6px;color:#f8fafc;font-weight:900}
+
+.scroller{display:flex;gap:14px;overflow:auto;padding-bottom:6px;scroll-snap-type:x proximity}
+.card{
+  min-width:280px;flex:0 0 auto;scroll-snap-align:start;
+  background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; position:relative;
+}
+.card .name{margin:0 70px 6px 0;font-weight:900;font-size:16px}
+.tag{display:inline-block;margin:4px 0 10px;padding:3px 8px;border-radius:999px;background:#121726;color:#cbd5e1;font-size:12px}
+.desc{margin:0;color:var(--muted);font-size:13px;line-height:1.5;min-height:40px}
+.price{
+  position:absolute;right:12px;top:12px;background:var(--brand);color:#171717;font-weight:900;
+  padding:6px 10px;border-radius:10px;font-size:14px;box-shadow:0 2px 0 rgba(0,0,0,.15)
+}
+.meta{display:flex;align-items:center;gap:10px;margin-top:12px;color:#9fb3c8;font-size:12px}
+.meta .chip{padding:4px 8px;border:1px solid #243042;border-radius:999px;background:#111926}
+
+/* ===== 地点时间卡 ===== */
+.info-card{
+  margin-top:18px;background:linear-gradient(180deg,#121520,#0f121b);
+  border:1px solid var(--line);border-radius:16px;padding:16px;
+}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.kv{flex:1 1 260px;background:#0f141c;border:1px solid #1c2330;border-radius:12px;padding:12px}
+.kv b{display:block;margin-bottom:6px;color:#e6edf6}
+.kv span{color:var(--muted);font-size:13px}
+.cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.btn{
+  appearance:none;border:none;cursor:pointer;padding:10px 14px;border-radius:10px;font-weight:800;
+  background:var(--brand);color:#111;box-shadow:0 2px 0 rgba(0,0,0,.25)
+}
+.btn.secondary{background:#18202b;color:#cfe7ff;border:1px solid #223046}
+.qr{
+  margin-left:auto;display:flex;align-items:center;gap:10px;color:#9fb3c8;font-size:12px
+}
+.qr .box{width:84px;height:84px;border:1px dashed #3a475b;border-radius:8px;background:
+  linear-gradient(90deg,#2a3342 2px,transparent 2px) left/10px 100%,
+  linear-gradient(#2a3342 2px,transparent 2px) top/100% 10px;}
+.help{margin-top:6px;color:#8ea2b8;font-size:12px}
+
+/* ===== 底部浮动导航 ===== */
+.nav{
+  position:fixed;left:0;right:0;bottom:0;background:linear-gradient(180deg,transparent,rgba(11,11,16,.7) 30%, rgba(11,11,16,.95));
+  backdrop-filter:blur(8px); padding:10px 16px; border-top:1px solid #1c2330;
+}
+.nav-inner{max-width:980px;margin:0 auto;display:flex;gap:10px;align-items:center}
+.nav .brand-mini{display:flex;align-items:center;gap:10px}
+.brand-mini .dot{width:10px;height:10px;border-radius:50%;background:var(--brand)}
+.nav a{
+  margin-left:auto; text-decoration:none; padding:10px 14px;border-radius:10px; font-weight:800;
+  background:var(--brand); color:#111; box-shadow:0 2px 0 rgba(0,0,0,.25)
+}
+
+/* ===== 小屏优化 ===== */
+@media (max-width:640px){
+  .card{min-width:82%}
+  .qr{width:100%;justify-content:flex-start;margin-top:8px}
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <!-- 顶部 -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>旁白 NARRATOR</h1>
+          <div class="sub">糖水 · 夜市 · 只做一锅</div>
+        </div>
+      </div>
+      <div class="badges">
+        <span class="pill"><span class="dot"></span> 今晚限定</span>
+        <span class="pill"><span class="dot"></span> 热红薯糖水</span>
+      </div>
+    </header>
+
+    <!-- 英雄区 -->
+    <section class="hero">
+      <h2>把夜色煮热的一杯</h2>
+      <p>盐城 · 射阳夜市｜19:00 开锅 · 卖完即收摊。今晚活动：<b>第2杯半价</b> 或 <b>免费加料升级</b>（椰奶/桂花/仙草/花生）。</p>
+    </section>
+
+    <!-- 菜单横滑：8款 -->
+    <div class="section-title"><span class="bar"></span><h3>今日菜单 · 热门口味（可横滑）</h3></div>
+
+    <div class="scroller">
+      <!-- 1 -->
+      <article class="card">
+        <div class="price">¥9</div>
+        <h4 class="name">桂花蜜红薯</h4>
+        <span class="tag">江南香气</span>
+        <p class="desc">一勺桂花落入热气，甜度刚好，第一口就安静下来。</p>
+        <div class="meta"><span class="chip">女生最爱</span><span class="chip">热销</span></div>
+      </article>
+
+      <!-- 2 -->
+      <article class="card">
+        <div class="price">¥10</div>
+        <h4 class="name">椰奶黑糖红薯</h4>
+        <span class="tag">浓郁顺滑</span>
+        <p class="desc">黑糖焦香遇见椰奶旋涡，热汤翻滚里的治愈主角。</p>
+        <div class="meta"><span class="chip">拍照出片</span></div>
+      </article>
+
+      <!-- 3 -->
+      <article class="card">
+        <div class="price">¥9</div>
+        <h4 class="name">陈皮姜汁红薯</h4>
+        <span class="tag">暖到心口</span>
+        <p class="desc">姜暖陈皮回甘，盐城的风也会被它按下暂停键。</p>
+        <div class="meta"><span class="chip">冬夜首选</span></div>
+      </article>
+
+      <!-- 4 -->
+      <article class="card">
+        <div class="price">¥11</div>
+        <h4 class="name">芋圆红薯</h4>
+        <span class="tag">Q弹快乐</span>
+        <p class="desc">小圆子撞上粉糯红薯，咀嚼里都是夜市的烟火气。</p>
+        <div class="meta"><span class="chip">层次丰富</span></div>
+      </article>
+
+      <!-- 5 -->
+      <article class="card">
+        <div class="price">¥11</div>
+        <h4 class="name">银耳红薯</h4>
+        <span class="tag">轻养生</span>
+        <p class="desc">胶质顺滑不黏腻，温温柔柔的一碗，慢慢喝刚好。</p>
+        <div class="meta"><span class="chip">滋润</span></div>
+      </article>
+
+      <!-- 6 -->
+      <article class="card">
+        <div class="price">¥11</div>
+        <h4 class="name">烧仙草红薯</h4>
+        <span class="tag">夜宵C位</span>
+        <p class="desc">微凉仙草遇上热糖水，冷热对撞，随手一拍就出片。</p>
+        <div class="meta"><span class="chip">人气</span></div>
+      </article>
+
+      <!-- 7 -->
+      <article class="card">
+        <div class="price">¥12</div>
+        <h4 class="name">红枣桂圆红薯</h4>
+        <span class="tag">滋补限定</span>
+        <p class="desc">红枣的甜，桂圆的香，都是把身体点亮的小火苗。</p>
+        <div class="meta"><span class="chip">应季</span></div>
+      </article>
+
+      <!-- 8 -->
+      <article class="card">
+        <div class="price">¥12</div>
+        <h4 class="name">花生芝麻红薯</h4>
+        <span class="tag">香气爆棚</span>
+        <p class="desc">坚果的脆与红薯的糯，一个负责香，一个负责抱紧你。</p>
+        <div class="meta"><span class="chip">口碑款</span></div>
+      </article>
+    </div>
+
+    <!-- 地点+时间+二维码 -->
+    <section class="info-card">
+      <div class="row">
+        <div class="kv"><b>今晚活动</b><span>第2杯半价 或 免费加料升级（椰奶/桂花/仙草/花生，限量）。</span></div>
+        <div class="kv"><b>时间</b><span>19:00–22:00（卖完即收摊）</span></div>
+        <div class="kv"><b>地点</b><span>盐城 · 射阳夜市（流动摊位）</span></div>
+      </div>
+      <div class="cta">
+        <button class="btn" onclick="alert('可跳转地图：把链接换成你的位置 URL')">打开地图</button>
+        <button class="btn secondary" onclick="alert('可跳转直播/小程序/外卖链接')">进入直播/下单</button>
+        <div class="qr">
+          扫码关注 / 入群
+          <div class="box" title="把这里替换成你的二维码图片"></div>
+        </div>
+      </div>
+      <div class="help">* 每单限用一项优惠 · 不与其他优惠叠加 · 以现场为准</div>
+    </section>
+  </div>
+
+  <!-- 底部浮动导航 -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand-mini"><span class="dot"></span><strong>旁白 · 今晚只做一锅</strong></div>
+      <a href="#" onclick="alert('替换为外卖/到店导航链接')">立即到店 / 下单</a>
+    </div>
+  </nav>
+</body>
+</html>
